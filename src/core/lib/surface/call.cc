@@ -653,13 +653,9 @@ class FilterStackCall final : public Call {
       // call_tracer_ and call_ variables locally as well because they could be
       // modified by another thread after the fetch_sub operation.
       CallTracerAnnotationInterface* call_tracer = call_tracer_;
-      FilterStackCall* call = call_;
       bool is_call_trace_enabled = grpc_call_trace.enabled();
       bool is_call_ops_annotate_enabled =
           (IsTraceRecordCallopsEnabled() && call_tracer != nullptr);
-      if (is_call_ops_annotate_enabled) {
-        call->InternalRef("Call ops annotate");
-      }
       auto r = ops_pending_.fetch_sub(mask, std::memory_order_acq_rel);
       if (is_call_trace_enabled || is_call_ops_annotate_enabled) {
         std::string trace_string = absl::StrFormat(
@@ -668,10 +664,6 @@ class FilterStackCall final : public Call {
             completion_data_.notify_tag.tag);
         if (is_call_trace_enabled) {
           gpr_log(GPR_DEBUG, "%s", trace_string.c_str());
-        }
-        if (is_call_ops_annotate_enabled) {
-          call_tracer->RecordAnnotation(trace_string);
-          call->InternalUnref("Call ops annotate");
         }
       }
       GPR_ASSERT((r & mask) != 0);

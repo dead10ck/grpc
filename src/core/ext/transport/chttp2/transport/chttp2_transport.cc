@@ -1325,12 +1325,6 @@ void grpc_chttp2_complete_closure_step(grpc_chttp2_transport* t,
         write_state_name(t->write_state), whence.file(), whence.line());
   }
 
-  if (s->call_tracer) {
-    s->call_tracer->RecordAnnotation(
-        absl::StrFormat("on_complete: s=%p %p desc=%s err=%s", s, closure, desc,
-                        grpc_core::StatusToString(error).c_str()));
-  }
-
   if (!error.ok()) {
     grpc_error_handle cl_err =
         grpc_core::internal::StatusMoveFromHeapPtr(closure->error_data.error);
@@ -1403,13 +1397,6 @@ static void perform_stream_op_locked(void* stream_op,
       log_metadata(op_payload->send_trailing_metadata.send_trailing_metadata,
                    s->id, t->is_client, false);
     }
-  }
-
-  if (s->call_tracer) {
-    s->call_tracer->RecordAnnotation(absl::StrFormat(
-        "perform_stream_op_locked[s=%p; op=%p]: %s; on_complete = %p", s, op,
-        grpc_transport_stream_op_batch_string(op, true).c_str(),
-        op->on_complete));
   }
 
   grpc_closure* on_complete = op->on_complete;
