@@ -302,25 +302,25 @@ if BUILD_WITH_SYSTEM_OPENSSL:
         lambda x: "third_party/boringssl" not in x, CORE_C_FILES
     )
     CORE_C_FILES = filter(lambda x: "src/boringssl" not in x, CORE_C_FILES)
-    SSL_INCLUDE = (os.path.join("/usr", "include", "openssl"),)
+    SSL_INCLUDE = (os.path.join("/data/data/com.termux/files/usr", "include", "openssl"),)
 
 if BUILD_WITH_SYSTEM_ZLIB:
     CORE_C_FILES = filter(lambda x: "third_party/zlib" not in x, CORE_C_FILES)
-    ZLIB_INCLUDE = (os.path.join("/usr", "include"),)
+    ZLIB_INCLUDE = (os.path.join("/data/data/com.termux/files/usr", "include"),)
 
 if BUILD_WITH_SYSTEM_CARES:
     CORE_C_FILES = filter(lambda x: "third_party/cares" not in x, CORE_C_FILES)
-    CARES_INCLUDE = (os.path.join("/usr", "include"),)
+    CARES_INCLUDE = (os.path.join("/data/data/com.termux/files/usr", "include"),)
 
 if BUILD_WITH_SYSTEM_RE2:
     CORE_C_FILES = filter(lambda x: "third_party/re2" not in x, CORE_C_FILES)
-    RE2_INCLUDE = (os.path.join("/usr", "include", "re2"),)
+    RE2_INCLUDE = (os.path.join("/data/data/com.termux/files/usr", "include", "re2"),)
 
 if BUILD_WITH_SYSTEM_ABSL:
     CORE_C_FILES = filter(
         lambda x: "third_party/abseil-cpp" not in x, CORE_C_FILES
     )
-    ABSL_INCLUDE = (os.path.join("/usr", "include"),)
+    ABSL_INCLUDE = (os.path.join("/data/data/com.termux/files/usr", "include"),)
 
 EXTENSION_INCLUDE_DIRECTORIES = (
     (PYTHON_STEM,)
@@ -364,7 +364,7 @@ if BUILD_WITH_SYSTEM_RE2:
 if BUILD_WITH_SYSTEM_ABSL:
     EXTENSION_LIBRARIES += tuple(
         lib.stem[3:]
-        for lib in sorted(pathlib.Path("/usr").glob("lib*/libabsl_*.so"))
+        for lib in sorted(pathlib.Path("/data/data/com.termux/files/usr").glob("lib*/libabsl_*.so"))
     )
 
 DEFINE_MACROS = (("_WIN32_WINNT", 0x600),)

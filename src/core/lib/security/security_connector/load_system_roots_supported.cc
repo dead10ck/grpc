@@ -46,18 +46,24 @@ namespace {
 
 #if defined(GPR_LINUX) || defined(GPR_ANDROID)
 const char* kCertFiles[] = {
-    "/etc/ssl/certs/ca-certificates.crt", "/etc/pki/tls/certs/ca-bundle.crt",
-    "/etc/ssl/ca-bundle.pem", "/etc/pki/tls/cacert.pem",
-    "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem"};
+    "/data/data/com.termux/files/usr/etc/ssl/certs/ca-certificates.crt",
+    "/data/data/com.termux/files/usr/etc/pki/tls/certs/ca-bundle.crt",
+    "/data/data/com.termux/files/usr/etc/ssl/ca-bundle.pem",
+    "/data/data/com.termux/files/usr/etc/pki/tls/cacert.pem",
+    "/data/data/com.termux/files/usr/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem"};
+
 const char* kCertDirectories[] = {
-    "/etc/ssl/certs", "/system/etc/security/cacerts", "/usr/local/share/certs",
-    "/etc/pki/tls/certs", "/etc/openssl/certs"};
+    "/data/data/com.termux/files/usr/etc/ssl/certs",
+    "/data/data/com.termux/files/usr/local/share/certs",
+    "/data/data/com.termux/files/usr/etc/pki/tls/certs",
+    "/data/data/com.termux/files/usr/etc/openssl/certs"};
+
 #elif defined(GPR_FREEBSD)  // endif GPR_LINUX || GPR_ANDROID
-const char* kCertFiles[] = {"/etc/ssl/cert.pem",
-                            "/usr/local/share/certs/ca-root-nss.crt"};
+const char* kCertFiles[] = {"/data/data/com.termux/files/usr/etc/ssl/cert.pem",
+                            "/data/data/com.termux/files/usr/local/share/certs/ca-root-nss.crt"};
 const char* kCertDirectories[] = {""};
 #elif defined(GPR_APPLE)    // endif GPR_FREEBSD
-const char* kCertFiles[] = {"/etc/ssl/cert.pem"};
+const char* kCertFiles[] = {"/data/data/com.termux/files/usr/etc/ssl/cert.pem"};
 const char* kCertDirectories[] = {""};
 #endif                      // GPR_APPLE
 

@@ -41,7 +41,7 @@ FILE* gpr_tmpfile(const char* prefix, char** tmp_filename) {
 
   if (tmp_filename != nullptr) *tmp_filename = nullptr;
 
-  gpr_asprintf(&filename_template, "/tmp/%s_XXXXXX", prefix);
+  gpr_asprintf(&filename_template, "/data/data/com.termux/files/usr/tmp/%s_XXXXXX", prefix);
   CHECK_NE(filename_template, nullptr);
 
   fd = mkstemp(filename_template);
