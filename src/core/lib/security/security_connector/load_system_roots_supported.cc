@@ -50,7 +50,8 @@ const char* kCertFiles[] = {
     "/data/data/com.termux/files/usr/etc/pki/tls/certs/ca-bundle.crt",
     "/data/data/com.termux/files/usr/etc/ssl/ca-bundle.pem",
     "/data/data/com.termux/files/usr/etc/pki/tls/cacert.pem",
-    "/data/data/com.termux/files/usr/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem"};
+    "/data/data/com.termux/files/usr/etc/pki/ca-trust/extracted/pem/"
+    "tls-ca-bundle.pem"};
 
 const char* kCertDirectories[] = {
     "/data/data/com.termux/files/usr/etc/ssl/certs",
@@ -59,8 +60,9 @@ const char* kCertDirectories[] = {
     "/data/data/com.termux/files/usr/etc/openssl/certs"};
 
 #elif defined(GPR_FREEBSD)  // endif GPR_LINUX || GPR_ANDROID
-const char* kCertFiles[] = {"/data/data/com.termux/files/usr/etc/ssl/cert.pem",
-                            "/data/data/com.termux/files/usr/local/share/certs/ca-root-nss.crt"};
+const char* kCertFiles[] = {
+    "/data/data/com.termux/files/usr/etc/ssl/cert.pem",
+    "/data/data/com.termux/files/usr/local/share/certs/ca-root-nss.crt"};
 const char* kCertDirectories[] = {""};
 #elif defined(GPR_APPLE)    // endif GPR_FREEBSD
 const char* kCertFiles[] = {"/data/data/com.termux/files/usr/etc/ssl/cert.pem"};
