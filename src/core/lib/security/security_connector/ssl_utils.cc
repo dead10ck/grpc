@@ -58,7 +58,8 @@ static const char* installed_roots_path = GRPC_ROOT_PEM_PATH;
 static const char* installed_roots_path =
     INSTALL_PREFIX "/data/data/com.termux/files/usr/share/grpc/roots.pem";
 #else
-static const char* installed_roots_path = "/data/data/com.termux/files/usr/share/grpc/roots.pem";
+static const char* installed_roots_path =
+    "/data/data/com.termux/files/usr/share/grpc/roots.pem";
 #endif
 
 #ifndef TSI_OPENSSL_ALPN_SUPPORT

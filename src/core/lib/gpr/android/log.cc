@@ -21,12 +21,11 @@
 #ifdef GPR_ANDROID
 
 #include <android/log.h>
+#include <grpc/support/log.h>
+#include <grpc/support/time.h>
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
-
-#include <grpc/support/log.h>
-#include <grpc/support/time.h>
 
 #include "src/core/lib/gprpp/crash.h"
 
@@ -58,7 +57,8 @@ void gpr_default_log(gpr_log_func_args* args) {
 
   asprintf(&output, "%s:%d] %s", display_file, args->line, args->message);
 
-  // __android_log_write(severity_to_log_priority(args->severity), "GRPC", output);
+  // __android_log_write(severity_to_log_priority(args->severity), "GRPC",
+  // output);
 
   // allocated by asprintf => use free, not gpr_free
   free(output);
